@@ -1,10 +1,10 @@
 {
-  "name": "Project Olympus",
-  "short_name": "Olympus",
-  "start_url": "./index.html",
+  "name": "Project Olympus TikTok Clone",
+  "short_name": "OlympusTik",
+  "start_url": ".",
   "display": "standalone",
-  "background_color": "#ffffff",
-  "theme_color": "#0a74da",
+  "background_color": "#000000",
+  "theme_color": "#000000",
   "icons": [
     {
       "src": "icons/iconsicon-192.png",
