@@ -3,12 +3,24 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Project Olympus TikTok Clone</title>
+  <title>OlympusTok</title>
   <link rel="stylesheet" href="style.css">
   <link rel="manifest" href="manifest.json">
 </head>
 <body>
-  <div id="video-feed"></div>
+  <header>
+    <h1>OlympusTok</h1>
+  </header>
+
+  <main id="feed"></main>
+
+  <nav class="bottom-nav">
+    <button id="uploadBtn">➕</button>
+    <button id="shareBtn">🔗</button>
+  </nav>
+
+  <input type="file" id="videoUpload" accept="video/*" hidden>
+
   <script src="app.js"></script>
 </body>
 </html>

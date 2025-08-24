@@ -1,47 +1,55 @@
-const feed = document.getElementById('video-feed');
+const feed = document.getElementById("feed");
+const uploadBtn = document.getElementById("uploadBtn");
+const videoUpload = document.getElementById("videoUpload");
+const shareBtn = document.getElementById("shareBtn");
 
-// Sample video data (replace with API later)
-const videos = [
-  { src: 'videos/video1.mp4', likes: 0, comments: [] },
-  { src: 'videos/video2.mp4', likes: 0, comments: [] },
-  { src: 'videos/video3.mp4', likes: 0, comments: [] },
+// Sample demo feed
+const demoVideos = [
+  "https://www.w3schools.com/html/mov_bbb.mp4",
+  "https://www.w3schools.com/html/movie.mp4"
 ];
 
-function createVideoCard(video) {
-  const container = document.createElement('div');
-  container.className = 'video-container';
-
-  const vid = document.createElement('video');
-  vid.src = video.src;
-  vid.controls = true;
-  vid.loop = true;
-  vid.autoplay = true;
-  vid.muted = true;
-  container.appendChild(vid);
-
-  const actions = document.createElement('div');
-  actions.className = 'actions';
-
-  const likeBtn = document.createElement('button');
-  likeBtn.textContent = `❤️ ${video.likes}`;
-  likeBtn.onclick = () => { video.likes++; likeBtn.textContent = `❤️ ${video.likes}`; };
-  
-  const shareBtn = document.createElement('button');
-  shareBtn.textContent = '🔗';
-  shareBtn.onclick = () => {
-    if (navigator.share) {
-      navigator.share({ title: 'Check this video!', url: window.location.href });
-    } else {
-      alert('Share not supported');
-    }
-  };
-
-  actions.appendChild(likeBtn);
-  actions.appendChild(shareBtn);
-  container.appendChild(actions);
-
-  return container;
+function loadFeed() {
+  feed.innerHTML = "";
+  demoVideos.forEach(src => {
+    const vid = document.createElement("video");
+    vid.src = src;
+    vid.controls = true;
+    vid.loop = true;
+    feed.appendChild(vid);
+  });
 }
 
-// Load videos into feed
-videos.forEach(v => feed.appendChild(createVideoCard(v)));
+// Upload video
+uploadBtn.addEventListener("click", () => {
+  videoUpload.click();
+});
+
+videoUpload.addEventListener("change", (e) => {
+  const file = e.target.files[0];
+  if (file) {
+    const url = URL.createObjectURL(file);
+    demoVideos.unshift(url);
+    loadFeed();
+  }
+});
+
+// Share app
+shareBtn.addEventListener("click", async () => {
+  if (navigator.share) {
+    try {
+      await navigator.share({
+        title: "OlympusTok",
+        text: "Check out OlympusTok – the new TikTok clone!",
+        url: window.location.href
+      });
+    } catch (err) {
+      console.log("Share failed", err);
+    }
+  } else {
+    alert("Share not supported on this browser.");
+  }
+});
+
+// Init
+loadFeed();
