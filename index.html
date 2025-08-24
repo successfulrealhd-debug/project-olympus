@@ -4,21 +4,14 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Project Olympus PWA</title>
-  <link rel="stylesheet" href="style.css">
   <link rel="manifest" href="manifest.json">
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <h1>Welcome to Project Olympus PWA</h1>
   <p>This is a free, offline-capable Progressive Web App.</p>
-  <button id="installBtn">Install App</button>
+  <button id="installBtn" style="display:none;">Install App</button>
 
   <script src="app.js"></script>
-  <script>
-    if ('serviceWorker' in navigator) {
-      navigator.serviceWorker.register('service-worker.js')
-        .then(() => console.log('Service Worker registered'))
-        .catch(err => console.log('Service Worker registration failed:', err));
-    }
-  </script>
 </body>
 </html>
